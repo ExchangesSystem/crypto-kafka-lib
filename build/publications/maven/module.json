@@ -1,0 +1,96 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.crp.libs",
+    "module": "crypto-kafka-lib",
+    "version": "1.0.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.6"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "crypto-kafka-lib-1.0.0.jar",
+          "url": "crypto-kafka-lib-1.0.0.jar",
+          "size": 7150,
+          "sha512": "d0797f943b40efbc328cdb30dda3191e64c515ec0a6500390c18274228a602dc0d39f097573f2d78c0c1740fd8afbd42670385609d57bf41709109d12f547093",
+          "sha256": "dd0f42d6a75007b727a190d1ce5bbc87c5d460b649ce5643cb1886be41952f85",
+          "sha1": "25c2f678aa832c9eba5250bdde887aa87b548988",
+          "md5": "264a15f62d7d57ef9cd733deca55de97"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework.kafka",
+          "module": "spring-kafka"
+        },
+        {
+          "group": "org.apache.kafka",
+          "module": "kafka-clients"
+        },
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-starter"
+        },
+        {
+          "group": "org.springframework",
+          "module": "spring-context"
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-reflect",
+          "version": {
+            "requires": "1.8.22"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.8.22"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "crypto-kafka-lib-1.0.0.jar",
+          "url": "crypto-kafka-lib-1.0.0.jar",
+          "size": 7150,
+          "sha512": "d0797f943b40efbc328cdb30dda3191e64c515ec0a6500390c18274228a602dc0d39f097573f2d78c0c1740fd8afbd42670385609d57bf41709109d12f547093",
+          "sha256": "dd0f42d6a75007b727a190d1ce5bbc87c5d460b649ce5643cb1886be41952f85",
+          "sha1": "25c2f678aa832c9eba5250bdde887aa87b548988",
+          "md5": "264a15f62d7d57ef9cd733deca55de97"
+        }
+      ]
+    }
+  ]
+}
