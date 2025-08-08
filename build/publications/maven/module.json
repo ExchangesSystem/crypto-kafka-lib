@@ -30,10 +30,10 @@
           "name": "crypto-kafka-lib-1.0.0.jar",
           "url": "crypto-kafka-lib-1.0.0.jar",
           "size": 7150,
-          "sha512": "d0797f943b40efbc328cdb30dda3191e64c515ec0a6500390c18274228a602dc0d39f097573f2d78c0c1740fd8afbd42670385609d57bf41709109d12f547093",
-          "sha256": "dd0f42d6a75007b727a190d1ce5bbc87c5d460b649ce5643cb1886be41952f85",
-          "sha1": "25c2f678aa832c9eba5250bdde887aa87b548988",
-          "md5": "264a15f62d7d57ef9cd733deca55de97"
+          "sha512": "475322528cdef87a15dc0584697200999d24f5768d1b553b69de9e48b3c15bef3586068c33d0bbd0d8fe993631d3b545f7be2b56e4cacb186a64a4da78e85d4c",
+          "sha256": "85d4fa2623246883b6877fd9df045837a8f40da743c0c743f48483ebee0611ba",
+          "sha1": "d4f541c4413c60f0785857bc2dce0e02334a659a",
+          "md5": "04d7afe846f190f8046544f1b1458c9f"
         }
       ]
     },
@@ -85,10 +85,10 @@
           "name": "crypto-kafka-lib-1.0.0.jar",
           "url": "crypto-kafka-lib-1.0.0.jar",
           "size": 7150,
-          "sha512": "d0797f943b40efbc328cdb30dda3191e64c515ec0a6500390c18274228a602dc0d39f097573f2d78c0c1740fd8afbd42670385609d57bf41709109d12f547093",
-          "sha256": "dd0f42d6a75007b727a190d1ce5bbc87c5d460b649ce5643cb1886be41952f85",
-          "sha1": "25c2f678aa832c9eba5250bdde887aa87b548988",
-          "md5": "264a15f62d7d57ef9cd733deca55de97"
+          "sha512": "475322528cdef87a15dc0584697200999d24f5768d1b553b69de9e48b3c15bef3586068c33d0bbd0d8fe993631d3b545f7be2b56e4cacb186a64a4da78e85d4c",
+          "sha256": "85d4fa2623246883b6877fd9df045837a8f40da743c0c743f48483ebee0611ba",
+          "sha1": "d4f541c4413c60f0785857bc2dce0e02334a659a",
+          "md5": "04d7afe846f190f8046544f1b1458c9f"
         }
       ]
     }
