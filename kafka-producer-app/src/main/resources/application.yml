@@ -1,0 +1,74 @@
+server:
+  port: 8080
+
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+
+spring:
+  application:
+    name: kafka-producer-app
+  
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    deserialization:
+      fail-on-unknown-properties: false
+
+# Kafka Configuration
+kafka:
+  bootstrap-servers: localhost:9092
+  producer:
+    key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    acks: all
+    retries: 3
+    batch-size: 16384
+    linger-ms: 5
+    buffer-memory: 33554432
+    enable-idempotence: true
+    compression-type: snappy
+
+# Application-specific Kafka topics
+app:
+  kafka:
+    topics:
+      default: messages
+      user-events: user-events
+      transaction-events: transaction-events
+
+# Logging
+logging:
+  level:
+    root: INFO
+    com.crp.kafka: DEBUG
+    org.springframework.kafka: INFO
+    org.apache.kafka: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+---
+# Docker profile
+spring:
+  config:
+    activate:
+      on-profile: docker
+      
+kafka:
+  bootstrap-servers: kafka-kraft:29092
+
+logging:
+  level:
+    root: INFO
+    com.crp.kafka: INFO

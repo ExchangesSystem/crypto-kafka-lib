@@ -1,0 +1,269 @@
+{
+  "info": {
+    "name": "Kafka Test Application",
+    "description": "Collection for testing Kafka Producer and Consumer applications",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Producer API",
+      "item": [
+        {
+          "name": "Send Simple Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"Hello World from Postman\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/messages/send",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "messages", "send"]
+            }
+          }
+        },
+        {
+          "name": "Send Message with Acknowledgment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"Important message requiring acknowledgment\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/messages/send-with-ack",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "messages", "send-with-ack"]
+            }
+          }
+        },
+        {
+          "name": "Send User Event",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"user123\",\n  \"message\": \"User performed an action\",\n  \"metadata\": {\n    \"action\": \"login\",\n    \"ip\": \"192.168.1.1\",\n    \"timestamp\": \"2024-01-01T10:00:00Z\"\n  }\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/messages/user-event",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "messages", "user-event"]
+            }
+          }
+        },
+        {
+          "name": "Send to Custom Topic",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"Message for custom topic\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/messages/send-to-topic?topic=custom-topic",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "messages", "send-to-topic"],
+              "query": [
+                {
+                  "key": "topic",
+                  "value": "custom-topic"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Batch Send Messages",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\"message\": \"First batch message\"},\n  {\"message\": \"Second batch message\"},\n  {\"message\": \"Third batch message\"},\n  {\"message\": \"Fourth batch message\"},\n  {\"message\": \"Fifth batch message\"}\n]"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/messages/batch-send",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "messages", "batch-send"]
+            }
+          }
+        },
+        {
+          "name": "Producer Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/messages/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "messages", "health"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Consumer Monitoring API",
+      "item": [
+        {
+          "name": "Get Consumer Statistics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8081/api/monitoring/stats",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8081",
+              "path": ["api", "monitoring", "stats"]
+            }
+          }
+        },
+        {
+          "name": "Get Processed Message by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8081/api/monitoring/message/{{messageId}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8081",
+              "path": ["api", "monitoring", "message", "{{messageId}}"]
+            }
+          }
+        },
+        {
+          "name": "Clear Message Cache",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8081/api/monitoring/cache/clear",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8081",
+              "path": ["api", "monitoring", "cache", "clear"]
+            }
+          }
+        },
+        {
+          "name": "Consumer Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8081/api/monitoring/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8081",
+              "path": ["api", "monitoring", "health"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Test Scenarios",
+      "item": [
+        {
+          "name": "Load Test - Send 100 Messages",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"Load test message {{$randomInt}}\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/messages/send",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "messages", "send"]
+            },
+            "description": "Run this request multiple times to simulate load"
+          }
+        },
+        {
+          "name": "Test Error Handling - Empty Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/messages/send",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "messages", "send"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "messageId",
+      "value": "replace-with-actual-message-id",
+      "type": "string"
+    }
+  ]
+}

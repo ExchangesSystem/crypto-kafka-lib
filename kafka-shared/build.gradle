@@ -1,0 +1,42 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.8.22'
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.8.22'
+    id 'java-library'
+}
+
+group = 'com.crp.kafka.shared'
+version = '1.0.0'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Kotlin
+    api 'org.jetbrains.kotlin:kotlin-reflect'
+    api 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    
+    // Jackson
+    api 'com.fasterxml.jackson.module:jackson-module-kotlin'
+    api 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    api 'com.fasterxml.jackson.core:jackson-annotations'
+    
+    // Validation
+    api 'jakarta.validation:jakarta.validation-api'
+    
+    // Testing
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'io.mockk:mockk:1.13.5'
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
+    kotlinOptions {
+        freeCompilerArgs = ['-Xjsr305=strict']
+        jvmTarget = '17'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

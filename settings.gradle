@@ -1,2 +1,9 @@
 rootProject.name = 'crypto-kafka-lib'
+
+// Original test app (deprecated in favor of separated apps)
 include 'test-app'
+
+// Separated applications
+include 'kafka-shared'
+include 'kafka-producer-app'  
+include 'kafka-consumer-app'

@@ -1,0 +1,83 @@
+server:
+  port: 8082
+
+management:
+  server:
+    port: 8083
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+
+spring:
+  application:
+    name: kafka-consumer-app
+  
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    deserialization:
+      fail-on-unknown-properties: false
+
+# Kafka Configuration
+kafka:
+  bootstrap-servers: localhost:9092
+  consumer:
+    group-id: crypto-consumer-group
+    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    auto-offset-reset: earliest
+    enable-auto-commit: true
+    auto-commit-interval-ms: 1000
+    session-timeout-ms: 30000
+    heartbeat-interval-ms: 3000
+    max-poll-records: 500
+    fetch-min-bytes: 1
+    fetch-max-wait-ms: 500
+    max-partition-fetch-bytes: 1048576
+
+# Application-specific Kafka topics
+app:
+  kafka:
+    topics:
+      default: messages
+      user-events: user-events
+      transaction-events: transaction-events
+      notifications: notifications
+      audit-logs: audit-logs
+      batch-processing: batch-processing
+      real-time-events: realtime-events
+      error-events: error-events
+      metrics: metrics
+
+# Logging
+logging:
+  level:
+    root: INFO
+    com.crp.kafka: DEBUG
+    org.springframework.kafka: INFO
+    org.apache.kafka: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+---
+# Docker profile
+spring:
+  config:
+    activate:
+      on-profile: docker
+      
+kafka:
+  bootstrap-servers: kafka-kraft:29092
+
+logging:
+  level:
+    root: INFO
+    com.crp.kafka: INFO

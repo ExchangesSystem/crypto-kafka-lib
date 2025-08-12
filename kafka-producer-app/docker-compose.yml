@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  kafka-producer-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kafka-producer-app
+    ports:
+      - "8080:8080"
+      - "8081:8081"  # Management port
+    environment:
+      # Spring profiles
+      SPRING_PROFILES_ACTIVE: docker
+      
+      # Kafka configuration
+      KAFKA_BOOTSTRAP_SERVERS: kafka-kraft:29092
+      
+      # Topic configuration
+      APP_KAFKA_TOPICS_DEFAULT: messages
+      APP_KAFKA_TOPICS_USER_EVENTS: user-events
+      APP_KAFKA_TOPICS_TRANSACTION_EVENTS: transaction-events
+      
+      # Producer configuration
+      KAFKA_PRODUCER_RETRIES: 3
+      KAFKA_PRODUCER_BATCH_SIZE: 16384
+      KAFKA_PRODUCER_LINGER_MS: 5
+      KAFKA_PRODUCER_BUFFER_MEMORY: 33554432
+      KAFKA_PRODUCER_ACKS: all
+      KAFKA_PRODUCER_ENABLE_IDEMPOTENCE: true
+      
+      # Application configuration
+      SERVER_PORT: 8080
+      MANAGEMENT_SERVER_PORT: 8081
+      MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: health,info,metrics,prometheus
+      
+      # Logging
+      LOGGING_LEVEL_ROOT: INFO
+      LOGGING_LEVEL_COM_CRP_KAFKA: DEBUG
+      LOGGING_PATTERN_CONSOLE: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+      
+      # JVM options
+      JAVA_OPTS: "-Xmx512m -Xms256m -XX:+UseG1GC"
+      
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - kafka-network
+    restart: unless-stopped
+    depends_on:
+      - kafka-kraft
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+networks:
+  kafka-network:
+    external: true
